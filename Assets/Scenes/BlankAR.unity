@@ -158,8 +158,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 585, y: 332}
+  m_AnchoredPosition: {x: 0, y: 31.8752}
+  m_SizeDelta: {x: 555.8355, y: 283.045}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &131805018
 MonoBehaviour:
@@ -181,9 +181,16 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Collect all the planets!
+  m_text: 'Collect all the planets in time you have!
 
-    But watch out of sun and moon''s!'
+    But watch out of sun and
+    moon''s!
+
+
+    Neptune gives you more time and Mercury more speed!
+
+
+    Goodluck!'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 342d20cac16434563a431671f9663755, type: 2}
   m_sharedMaterial: {fileID: -3260702530686095522, guid: 342d20cac16434563a431671f9663755,
@@ -211,8 +218,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30
-  m_fontSizeBase: 30
+  m_fontSize: 18
+  m_fontSizeBase: 18
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -349,6 +356,7 @@ GameObject:
   - component: {fileID: 231314192}
   - component: {fileID: 231314191}
   - component: {fileID: 231314190}
+  - component: {fileID: 231314194}
   m_Layer: 2
   m_Name: Canvas
   m_TagString: Untagged
@@ -445,6 +453,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &231314194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 231314189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bafcb10f2f0e4777b99e58f7734b002, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &249452025
 GameObject:
   m_ObjectHideFlags: 0
@@ -1749,8 +1769,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -0.010009766}
-  m_SizeDelta: {x: 585, y: 332}
+  m_AnchoredPosition: {x: 7.2912, y: 92.742}
+  m_SizeDelta: {x: 554.7938, y: 239.24}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &566889388
 MonoBehaviour:
@@ -1772,10 +1792,13 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Congratulations
+  m_text: '
 
 
-    You Won!
+    Congratulations
+
+
+    You collected all the planets in given time!
 
 
 
@@ -1807,8 +1830,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30
-  m_fontSizeBase: 30
+  m_fontSize: 20
+  m_fontSizeBase: 20
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -2028,8 +2051,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -0.010009766}
-  m_SizeDelta: {x: 585, y: 332}
+  m_AnchoredPosition: {x: 0, y: 92.74498}
+  m_SizeDelta: {x: 585, y: 239.24}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &581872563
 MonoBehaviour:
@@ -2056,6 +2079,7 @@ MonoBehaviour:
     Sorry but you lose!
 
 
+    Lets try again!
 
 '
   m_isRightToLeft: 0
@@ -2085,8 +2109,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 25
-  m_fontSizeBase: 25
+  m_fontSize: 20
+  m_fontSizeBase: 20
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

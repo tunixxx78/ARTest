@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.ARFoundation;
+using UnityEngine.XR.ARSubsystems;
 using TMPro;
 using UnityEngine.SceneManagement;
 
@@ -63,7 +64,7 @@ public class ARAimPoint : MonoBehaviour
             {
                 List<ARRaycastHit> hits = new List<ARRaycastHit>();
                 raycastManager.Raycast(Input.GetTouch(0).position, hits, UnityEngine.XR.ARSubsystems.TrackableType.Planes);
-
+                /*
                 if (RaycastBlockedByUI(hits[0].pose.position))
                 {
                     Debug.Log("Ei voi instansioida objektia!");
@@ -74,12 +75,15 @@ public class ARAimPoint : MonoBehaviour
                     planetsToColectIndex++;
                     timeToGoIndex += timePerSpawnedPlanet;
                 }
-                /*
+                */
+                
                 if (hits.Count > 0)
                 {
-                    
+                    var currentObj = GameObject.Instantiate(objectsToPlace[objectIndex], hits[0].pose.position, hits[0].pose.rotation);
+                    planetsToColectIndex++;
+                    timeToGoIndex += timePerSpawnedPlanet;
                 }
-                */
+                
             }
         }
 
@@ -90,6 +94,7 @@ public class ARAimPoint : MonoBehaviour
         {
             WinningPanel.SetActive(true);
             plrControllers.SetActive(false);
+            timerIsOn = false;
         }
 
         if (timerIsOn)
@@ -141,9 +146,11 @@ public class ARAimPoint : MonoBehaviour
 
     public void StartAgain()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
+    //static List<ARRaycastHit> s_Hits = new List<ARRaycastHit>();
+    /*
     private bool RaycastBlockedByUI(Vector2 touchPosition)
     {
         if (PointerOverUI.IsPointerOverUIObject(touchPosition))
@@ -151,8 +158,9 @@ public class ARAimPoint : MonoBehaviour
             return false;
         }
 
-        return false;
-        //return RaycastManager.Raycast(touchPosition, s_Hits, TrackableType.PlaneWithinPolygon);
+        //return false;
+        return raycastManager.Raycast(touchPosition, s_Hits, TrackableType.PlaneWithinPolygon);
     }
+    */
 }
 

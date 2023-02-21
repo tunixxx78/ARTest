@@ -13,8 +13,13 @@ public class PLRBoost : MonoBehaviour
 
     private void Awake()
     {
-        originalSpeed = aRAim.carSpeed;
+        aRAim = FindObjectOfType<ARAimPoint>();
         isBoosted = false;
+    }
+
+    private void Start()
+    {
+        originalSpeed = aRAim.carSpeed;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -24,13 +29,17 @@ public class PLRBoost : MonoBehaviour
             isBoosted = true;
             aRAim.carSpeed = boostedSpeed;
 
-            Destroy(this.gameObject, 1f);
+            Debug.Log("Speed is boosted and current speed is: " + aRAim.carSpeed);
+
+            //Destroy(this.gameObject, 1f);
 
             StartCoroutine(TurnSpeedToDefault());
         }
         if(other.CompareTag("Player") && isNeptun)
         {
             aRAim.timeToGoIndex += extraTime;
+
+            Destroy(this.gameObject, 2f);
         }
     }
 

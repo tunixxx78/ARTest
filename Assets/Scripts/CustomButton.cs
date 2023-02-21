@@ -33,7 +33,7 @@ public class CustomButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
             RBInstance = thisCar.GetComponent<Rigidbody>();
             RBInstance.drag = 0;
             //RBInstance.velocity = movement;
-            thisCar.transform.Translate(movement * aRAim.carSpeed *Time.deltaTime,Space.Self);
+            thisCar.transform.Translate(movement * aRAim.carSpeed * Time.deltaTime);
         }
 
     }
