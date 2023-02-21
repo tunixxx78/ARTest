@@ -5003,9 +5003,10 @@ GameObject:
   - component: {fileID: 6455533111849235540}
   - component: {fileID: 8921871575378902748}
   - component: {fileID: 6783440796660325394}
+  - component: {fileID: 7909879235779461788}
   m_Layer: 0
   m_Name: Neptune_Obstacle
-  m_TagString: Obstacle
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5019,7 +5020,7 @@ Transform:
   m_GameObject: {fileID: 888761225720590001}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.12272528, y: -0.00000011920929, z: 3.6844964}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 891497168345705429}
@@ -5090,5 +5091,24 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.14
+  m_Radius: 1.33
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7909879235779461788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 888761225720590001}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5eb099848a42e403ea6aff48d5a2fcf6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  originalSpeed: 0
+  boostedSpeed: 10
+  extraTime: 15
+  boostTime: 5
+  isMercury: 0
+  isNeptun: 1
+  isBoosted: 0

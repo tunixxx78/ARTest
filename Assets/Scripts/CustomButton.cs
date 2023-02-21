@@ -13,12 +13,16 @@ public class CustomButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
 
     bool move;
     [SerializeField] bool turning;
+
+    ARAimPoint aRAim;
     
     void Awake()
     {
         if (buttonClick == null) { buttonClick = new UnityEvent(); }
         
         move = false;
+
+        aRAim = FindObjectOfType<ARAimPoint>();
 
     }
 
@@ -29,7 +33,7 @@ public class CustomButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
             RBInstance = thisCar.GetComponent<Rigidbody>();
             RBInstance.drag = 0;
             //RBInstance.velocity = movement;
-            thisCar.transform.Translate(movement * Time.deltaTime,Space.Self);
+            thisCar.transform.Translate(movement * aRAim.carSpeed *Time.deltaTime,Space.Self);
         }
 
     }
@@ -47,6 +51,11 @@ public class CustomButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
     public void FindAPlayer()
     {
         thisCar = GameObject.Find("Car(Clone)");
+    }
+
+    public void StartTimer()
+    {
+        aRAim.timerIsOn = true;
     }
 
     public void OnPointerDown(PointerEventData eventData)

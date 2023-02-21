@@ -15,10 +15,14 @@ public class ARAimPoint : MonoBehaviour
 
     public int objectIndex = 0;
 
-    public bool useCursor = true, canSpawnCollectibles = true, gameHasStarted = false;
+    public bool useCursor = true, canSpawnCollectibles = true, gameHasStarted = false, timerIsOn = false;
 
     public TMP_Text planetsToCollectText;
     public int planetsToColectIndex = 0;
+
+    public TMP_Text timeToGoText;
+    public float timeToGoIndex, carSpeed;
+    [SerializeField] float timePerSpawnedPlanet;
 
     [SerializeField] GameObject WinningPanel;
     public GameObject losePanel, plrControllers;
@@ -26,18 +30,23 @@ public class ARAimPoint : MonoBehaviour
     private void Awake()
     {
         gameHasStarted = false;
+        timerIsOn = false;
     }
 
     private void Start()
     {
         cursorChildObject.SetActive(useCursor);
         canSpawnCollectibles = true;
-        carSpawnPoint.position = new Vector3(0, 0, 0);
         planetsToCollectText.text = planetsToColectIndex.ToString();
+        timeToGoText.text = timeToGoIndex.ToString();
     }
 
     private void Update()
     {
+
+        string tempTimer = string.Format("{0:00}", timeToGoIndex);
+        timeToGoText.text = tempTimer.ToString();
+
         if (useCursor && canSpawnCollectibles)
         {
             UpdateCursor();
@@ -47,27 +56,52 @@ public class ARAimPoint : MonoBehaviour
             if (useCursor)
             {
                 GameObject.Instantiate(objectsToPlace[objectIndex], transform.position, transform.rotation);
+                planetsToColectIndex++;
+                timeToGoIndex += timePerSpawnedPlanet;
             }
             else
             {
                 List<ARRaycastHit> hits = new List<ARRaycastHit>();
                 raycastManager.Raycast(Input.GetTouch(0).position, hits, UnityEngine.XR.ARSubsystems.TrackableType.Planes);
 
-                if (hits.Count > 0)
+                if (RaycastBlockedByUI(hits[0].pose.position))
+                {
+                    Debug.Log("Ei voi instansioida objektia!");
+                }
+                if (RaycastBlockedByUI(hits[0].pose.position) == false)
                 {
                     var currentObj = GameObject.Instantiate(objectsToPlace[objectIndex], hits[0].pose.position, hits[0].pose.rotation);
-                    carSpawnPoint.position = currentObj.transform.position;
                     planetsToColectIndex++;
+                    timeToGoIndex += timePerSpawnedPlanet;
                 }
-
+                /*
+                if (hits.Count > 0)
+                {
+                    
+                }
+                */
             }
         }
 
         planetsToCollectText.text = planetsToColectIndex.ToString();
 
-        if(gameHasStarted && planetsToColectIndex <= 0)
+
+        if (gameHasStarted && planetsToColectIndex <= 0)
         {
             WinningPanel.SetActive(true);
+            plrControllers.SetActive(false);
+        }
+
+        if (timerIsOn)
+        {
+            timeToGoIndex -= 1 * Time.deltaTime;
+        }
+
+        if(gameHasStarted && timeToGoIndex <= 0)
+        {
+            timerIsOn = false;
+            timeToGoText.text = "0";
+            losePanel.SetActive(true);
             plrControllers.SetActive(false);
         }
     }
@@ -108,6 +142,17 @@ public class ARAimPoint : MonoBehaviour
     public void StartAgain()
     {
         SceneManager.LoadScene(0);
+    }
+
+    private bool RaycastBlockedByUI(Vector2 touchPosition)
+    {
+        if (PointerOverUI.IsPointerOverUIObject(touchPosition))
+        {
+            return false;
+        }
+
+        return false;
+        //return RaycastManager.Raycast(touchPosition, s_Hits, TrackableType.PlaneWithinPolygon);
     }
 }
 
